@@ -8,7 +8,7 @@ export default function Footer() {
         className="border-b-2 border-night dark:border-pale py-4"
       >
         <div className="text-center py-5 px-3 ">
-          <p className="font-bold text-4xl font-besley">
+          <p className="font-bold text-5xl font-bebas">
             &quot;Just do it.&quot;
           </p>
         </div>
@@ -16,7 +16,7 @@ export default function Footer() {
       <div id="footer-content" className="flex flex-row justify-around py-6">
         <div id="title-socials-container">
           <div id="title-container" className="flex flex-col">
-            <p className="font-besley font-light mb-4 text-4xl">Voile</p>
+            <p className="font-medium mb-4 text-4xl">Voile</p>
           </div>
           <div id="socials-container" className="flex flex-col font-body gap-2">
             <Link href="https://www.linkedin.com/in/prajanya-subramanian">
@@ -52,9 +52,7 @@ export default function Footer() {
             </div>
           </div>
           <div id="features-links-container" className="flex flex-col">
-            <p className="font-heading font-bold mb-2 text-2xl">
-              Features we offer
-            </p>
+            <p className="font-heading font-bold mb-2 text-2xl">Features</p>
             <div id="features-links-container" className="flex flex-col">
               <Link href="/gallery">
                 <p className="hover:font-bold">Gallery</p>
@@ -68,7 +66,7 @@ export default function Footer() {
       </div>
       <div id="footer-bottom-content" className="flex flex-row px-10">
         <div id="license">
-          <p>© {new Date().getFullYear()} Doripomo. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Voile. All rights reserved.</p>
         </div>
       </div>
     </footer>

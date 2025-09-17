@@ -9,8 +9,8 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-4 left-1/2 z-50 w-[90%] max-w-4xl -translate-x-1/2 rounded-full bg-zinc-950 px-2 py-1 dark:bg-zinc-950">
-      <nav className="relative flex items-center justify-center">
+    <header className="fixed top-4 left-1/2 z-50 w-[90%] max-w-4xl -translate-x-1/2 rounded-full bg-zinc-950 text-zinc-50 px-2 py-3 dark:bg-zinc-50 dark:text-zinc-950">
+      <nav className="relative flex items-center justify-between mx-10">
         {/* desktop links */}
         <div id="nav-links" className="flex flex-row gap-10 pl-4">
           <Link href="/gallery" className="block hover:underline">
@@ -19,7 +19,10 @@ export default function Navbar() {
         </div>
         {/* logo */}
         <div>
-          <Link href="/" className="text-lg text-zinc-950 dark:text-zinc-50">
+          <Link
+            href="/"
+            className="text-xl bg-zinc-950 text-zinc-50 px-2 py-1 dark:bg-zinc-50 dark:text-zinc-950"
+          >
             Voile
           </Link>
         </div>
@@ -29,7 +32,7 @@ export default function Navbar() {
           {/* get started */}
           <button
             type="button"
-            className="rounded-md bg-zinc-950 px-4 py-2 font-sans text-zinc-50 dark:bg-zinc-50 dark:text-zinc-950"
+            className="rounded-md bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
           >
             <Link href="/auth/login">Get started</Link>
           </button>
@@ -67,7 +70,7 @@ export default function Navbar() {
           <Link href="/gallery" className="block text-zinc-50 hover:underline">
             Browse gallery
           </Link>
-          <button className="rounded-md bg-zinc-950 px-4 py-2 font-sans text-zinc-50 dark:bg-zinc-50 dark:text-zinc-950">
+          <button className="rounded-md bg-zinc-950 px-4 py-2 font-sans text-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 hover:bg-zinc-600 hover:underline">
             <Link href="/auth/login">Get started</Link>
           </button>
           {/* Theme switcher placeholder */}
