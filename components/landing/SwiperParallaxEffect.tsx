@@ -1,77 +1,65 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCreative } from "swiper/modules";
+import { EffectCreative, Mousewheel, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/effect-creative";
-// types
-import { type CreativeSwiperProps } from "@/types/swiper";
 // modules
 import GlassFile from "./GlassFile";
 import VoileIntro from "./VoileIntro";
 import SaintLaurent from "./SaintLaurent";
+import VidFrameOne from "./VidFrameOne";
+import VidFrameTwo from "./VidFrameTwo";
+import VidFrameThree from "./VidFrameThree";
+import Footer from "../common/Footer";
 
 export default function SwiperParallaxEffect() {
-  const params: CreativeSwiperProps = {
-    direction: "vertical",
-    effect: "creative",
-    grabCursor: true,
-    loop: true,
-    modules: [EffectCreative],
-    creativeEffect: {
-      prev: {
-        shadow: true,
-        translate: [0, "-120%", -500],
-      },
-      next: {
-        shadow: true,
-        translate: [0, "120%", -500],
-      },
-    },
-  };
-
   return (
-    <div className="h-screen w-full">
-      <Swiper {...params} className="h-full w-full">
+    <div className="h-screen w-screen overflow-hidden">
+      <Swiper
+        direction="vertical"
+        effect="creative"
+        speed={900}
+        loop={false}
+        grabCursor={false}
+        mousewheel={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[EffectCreative, Mousewheel, Pagination]}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: [0, "-120%", -500],
+          },
+          next: {
+            shadow: true,
+            translate: [0, "120%", -500],
+          },
+        }}
+        className="h-full w-full"
+      >
         <SwiperSlide>
           <GlassFile />
         </SwiperSlide>
 
         <SwiperSlide>
-          <video
-            className="w-full h-auto"
-            src="/videos/videoOne.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <VidFrameOne />
         </SwiperSlide>
 
         <SwiperSlide>
           <VoileIntro />
         </SwiperSlide>
         <SwiperSlide>
-          <video
-            className="w-full h-auto"
-            src="/videos/videoTwo.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <VidFrameTwo />
         </SwiperSlide>
         <SwiperSlide>
           <SaintLaurent />
         </SwiperSlide>
         <SwiperSlide>
-          <video
-            className="w-full h-auto"
-            src="/videos/videoThree.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <VidFrameThree />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Footer />
         </SwiperSlide>
       </Swiper>
     </div>
