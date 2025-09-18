@@ -5,7 +5,7 @@ import Image from "next/image"; // image optimization
 
 export default function GlassFile() {
   return (
-    <section id="hero" className="relative z-20 h-[40%s]">
+    <section id="hero" className="absolute top-16 w-full z-20 h-full">
       <div
         id="hero wrapper"
         className="grid [grid-template-columns:repeat(10,1fr)] [grid-template-rows:repeat(10,1fr)]"

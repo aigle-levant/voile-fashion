@@ -5,7 +5,6 @@ export default function VidFrameOne() {
       autoPlay
       loop
       muted
-      controls
       playsInline
     >
       <source src="/videos/videoOne.mp4" type="video/mp4" />

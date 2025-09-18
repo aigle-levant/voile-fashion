@@ -9,11 +9,14 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-4 left-1/2 z-50 w-[90%] max-w-4xl -translate-x-1/2 rounded-full bg-zinc-950 text-zinc-50 px-2 py-3 dark:bg-zinc-50 dark:text-zinc-950">
+    <header className="absolute top-4 left-1/2 z-50 w-[90%] max-w-4xl -translate-x-1/2 rounded-full bg-zinc-950/40 text-zinc-50 px-2 py-3 dark:bg-zinc-50/40 dark:text-zinc-950 backdrop-blur-md">
       <nav className="relative flex items-center justify-between mx-10">
         {/* desktop links */}
         <div id="nav-links" className="flex flex-row gap-10 pl-4">
-          <Link href="/gallery" className="block hover:underline">
+          <Link
+            href="/gallery"
+            className="hidden md:block lg:block hover:underline"
+          >
             Browse gallery
           </Link>
         </div>
@@ -21,25 +24,26 @@ export default function Navbar() {
         <div>
           <Link
             href="/"
-            className="text-xl bg-zinc-950 text-zinc-50 px-2 py-1 dark:bg-zinc-50 dark:text-zinc-950"
+            className="text-xl  text-zinc-50 px-2 py-1 hover:underline dark:text-zinc-950"
           >
             Voile
           </Link>
         </div>
         {/* theme switcher + get started */}
-        <div className="font-body flex flex-row gap-10 pr-1">
+        <div className="font-body hidden md:flex lg:flex flex-row gap-10 pr-1">
           {/* theme switcher */}
           {/* get started */}
           <button
             type="button"
-            className="rounded-md bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
+            className="rounded-md
+            hover:bg-zinc-600 hover:text-zinc-300 md:block bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
           >
             <Link href="/auth/login">Get started</Link>
           </button>
         </div>
         {/* mobile menu */}
         {/* Mobile Hamburger */}
-        <div className="md:hidden">
+        <div className="md:hidden lg:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex flex-col gap-1 p-2"
@@ -67,10 +71,13 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="absolute top-full left-0 mt-2 w-full rounded-lg bg-zinc-950 p-4 flex flex-col gap-4 md:hidden">
-          <Link href="/gallery" className="block text-zinc-50 hover:underline">
+          <Link
+            href="/gallery"
+            className="block text-center text-zinc-50 hover:underline"
+          >
             Browse gallery
           </Link>
-          <button className="rounded-md bg-zinc-950 px-4 py-2 font-sans text-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 hover:bg-zinc-600 hover:underline">
+          <button className="rounded-md  bg-zinc-50 px-4 py-2 font-sans text-zinc-950 dark:bg-zinc-50 dark:text-zinc-950">
             <Link href="/auth/login">Get started</Link>
           </button>
           {/* Theme switcher placeholder */}

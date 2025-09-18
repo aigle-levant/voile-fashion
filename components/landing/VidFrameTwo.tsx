@@ -5,7 +5,6 @@ export default function VidFrameTwo() {
       autoPlay
       loop
       muted
-      controls
       playsInline
     >
       <source src="/videos/videoTwo.mp4" type="video/mp4" />

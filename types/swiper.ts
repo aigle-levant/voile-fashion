@@ -12,3 +12,7 @@ export interface CreativeSwiperProps extends SwiperProps {
     };
   };
 }
+
+export interface VidFrameProps {
+  src: string;
+}

@@ -5,7 +5,6 @@ export default function VidFrameThree() {
       autoPlay
       loop
       muted
-      controls
       playsInline
     >
       <source src="/videos/videoThree.mp4" type="video/mp4" />

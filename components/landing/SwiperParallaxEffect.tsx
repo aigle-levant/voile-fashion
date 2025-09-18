@@ -41,17 +41,20 @@ export default function SwiperParallaxEffect() {
         <SwiperSlide>
           <GlassFile />
         </SwiperSlide>
-
+        {/* load the video HERE instead of in vidframes */}
+        {/* typescript wont yell at you */}
         <SwiperSlide>
           <VidFrameOne />
         </SwiperSlide>
-
+        {/* voile fancy intro like hello comrade */}
         <SwiperSlide>
           <VoileIntro />
         </SwiperSlide>
+        {/* couch vid */}
         <SwiperSlide>
           <VidFrameTwo />
         </SwiperSlide>
+        {/* i wanna be m. saint-laurent */}
         <SwiperSlide>
           <SaintLaurent />
         </SwiperSlide>

@@ -1,10 +1,14 @@
 export default function VoileIntro() {
   return (
-    <section id="body" className="my-10 p-10">
-      <h2 className="font-besley mb-4 text-center text-4xl">
+    <section
+      id="body"
+      className="my-12 px-6 sm:px-10 md:px-20 lg:px-32 xl:px-40"
+    >
+      <h2 className="font-besley mb-8 text-center mt-40 text-2xl sm:text-3xl lg:text-4xl">
         Voile is an acclaimed fashion company launched in 2021.
       </h2>
-      <div className="mt-4 flex flex-row gap-10">
+
+      <div className="mt-6 flex flex-col gap-6 md:flex-row md:gap-10 text-base leading-relaxed">
         <p>
           Based in Lyon, Voile seeks to understand the fundamental differences
           in the fashion of the yesteryears. Our goal is to accurately portray
