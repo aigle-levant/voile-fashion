@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sheet";
 import { Search } from "lucide-react";
 
-export function SheetDemo() {
+export function SearchSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
