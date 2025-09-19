@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+// search sheet
+import { SheetDemo } from "./SheetDemo";
 // TODO: add theme switcher
 
 export default function Navbar() {
@@ -32,6 +34,8 @@ export default function Navbar() {
         {/* theme switcher + get started */}
         <div className="font-body hidden md:flex lg:flex flex-row gap-10 pr-1">
           {/* theme switcher */}
+          {/* search */}
+          <SheetDemo />
           {/* get started */}
           <button
             type="button"
@@ -70,16 +74,20 @@ export default function Navbar() {
       {/* mobile links */}
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full rounded-lg bg-zinc-950 p-4 flex flex-col gap-4 md:hidden">
+        <div className="absolute top-full left-0 mt-2 w-full rounded-lg bg-zinc-950 flex flex-col gap-6 py-6 px-4  md:hidden">
           <Link
             href="/gallery"
             className="block text-center text-zinc-50 hover:underline"
           >
             Browse gallery
           </Link>
-          <button className="rounded-md  bg-zinc-50 px-4 py-2 font-sans text-zinc-950 dark:bg-zinc-50 dark:text-zinc-950">
-            <Link href="/auth/login">Get started</Link>
-          </button>
+          <div className="flex flex-row justify-between mx-3 gap-4">
+            <button className="rounded-md w-full bg-zinc-50 px-4 py-2 font-sans text-zinc-950 dark:bg-zinc-50 dark:text-zinc-950">
+              <Link href="/auth/login">Get started</Link>
+            </button>
+            {/* search */}
+            <SheetDemo />
+          </div>
           {/* Theme switcher placeholder */}
         </div>
       )}
