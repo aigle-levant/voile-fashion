@@ -107,3 +107,9 @@ Please file feedback and issues over on the [Supabase GitHub org](https://github
 ### Credits
 
 Video by cottonbro studio: https://www.pexels.com/video/woman-wearing-a-silver-dress-3402547/
+
+#### Seed data
+
+- [Museums Victoria](https://unsplash.com/photos/woman-wearing-wedding-dress-painting-FZPwHoiowFw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) - Victorian Wedding Dress
+- [Bulbul Ahmed](https://unsplash.com/photos/person-in-brown-and-white-hijab-ohEYtC4TEsg) - Saree
+- [Jignasa](https://unsplash.com/photos/pink-and-gold-textile-on-blue-denim-textile-9iGr4sojVcs) - Ottiyanam

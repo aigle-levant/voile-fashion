@@ -4,6 +4,7 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
+  SheetOverlay,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Search } from "lucide-react";
@@ -16,6 +17,7 @@ export function SheetDemo() {
           <Search />
         </Button>
       </SheetTrigger>
+      <SheetOverlay className="bg-zinc-950/80 dark:bg-zinc-50/80 backdrop-blur-sm" />
       <SheetContent className="flex flex-col border-zinc-950 dark:border-zinc-50 justify-around bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950">
         <SheetHeader>
           <input
