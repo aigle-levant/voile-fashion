@@ -19,12 +19,34 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 // period
 import { Slider } from "@/components/ui/slider";
-import { useState } from "react";
 import { formatPeriod } from "@/utils/formatPeriod";
+// filter logic
+import { type FilterGalleryProps, type Filters } from "@/types/components";
+import { useState } from "react";
 
-export default function FilterGallery() {
-  // for period filter
-  const [periodRange, setPeriodRange] = useState([-500, 200]);
+export default function FilterGallery({
+  filters,
+  setFilters,
+}: FilterGalleryProps) {
+  // setting filter
+  const [tempFilters, setTempFilters] = useState<Filters>(filters);
+
+  function toggleTempFilter(key: keyof Omit<Filters, "period">, value: string) {
+    setTempFilters((prev) => {
+      const updated = prev[key].includes(value)
+        ? prev[key].filter((v) => v !== value)
+        : [...prev[key], value];
+      return { ...prev, [key]: updated };
+    });
+  }
+
+  const resetFilters: Filters = {
+    category: [],
+    culture: [],
+    material: [],
+    period: [-4000, 2020],
+  };
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -61,102 +83,105 @@ export default function FilterGallery() {
           <FilterCollapsible
             query="Category"
             content={
-              <div id="category-filter-wrapper" className="flex flex-col">
-                <div className="flex items-center gap-3">
-                  <Checkbox id="dress" />
-                  <Label htmlFor="dress">Dress</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="footwear" />
-                  <Label htmlFor="footwear">Footwear</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="jewelry" />
-                  <Label htmlFor="jewelry">Jewelry</Label>
-                </div>
+              <div className="flex font-medium flex-col gap-3">
+                {["Dress", "Footwear", "Jewelry"].map((cat) => (
+                  <div key={cat} className="flex items-center gap-3">
+                    <Checkbox
+                      id={cat.toLowerCase()}
+                      checked={tempFilters.category.includes(cat)}
+                      onCheckedChange={() => toggleTempFilter("category", cat)}
+                    />
+                    <Label htmlFor={cat.toLowerCase()}>{cat}</Label>
+                  </div>
+                ))}
               </div>
             }
           />
           <FilterCollapsible
             query="Culture"
             content={
-              <div id="culture-filter-wrapper" className="flex flex-col">
-                <div className="flex items-center gap-3">
-                  <Checkbox id="indian" />
-                  <Label htmlFor="indian">Indian</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="english" />
-                  <Label htmlFor="english">English</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="slavic" />
-                  <Label htmlFor="slavic">Slavic</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="french" />
-                  <Label htmlFor="french">French</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="chinese" />
-                  <Label htmlFor="chinese">Chinese</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="japanese" />
-                  <Label htmlFor="japanese">Japanese</Label>
-                </div>
+              <div className="flex font-medium flex-col gap-3">
+                {[
+                  "Indian",
+                  "English",
+                  "Slavic",
+                  "French",
+                  "Chinese",
+                  "Japanese",
+                ].map((culture) => (
+                  <div key={culture} className="flex items-center gap-3">
+                    <Checkbox
+                      id={culture.toLowerCase()}
+                      checked={tempFilters.culture.includes(culture)}
+                      onCheckedChange={() =>
+                        toggleTempFilter("culture", culture)
+                      }
+                    />
+                    <Label htmlFor={culture.toLowerCase()}>{culture}</Label>
+                  </div>
+                ))}
               </div>
             }
           />
           <FilterCollapsible
             query="Material"
             content={
-              <div id="material-filter-wrapper" className="flex flex-col">
-                <div className="flex items-center gap-3">
-                  <Checkbox id="silk" />
-                  <Label htmlFor="silk">Silk</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="cotton" />
-                  <Label htmlFor="cotton">Cotton</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="gold" />
-                  <Label htmlFor="gold">Gold</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="polyester" />
-                  <Label htmlFor="polyester">Polyester</Label>
-                </div>
+              <div className="flex font-medium flex-col gap-3">
+                {["Silk", "Cotton", "Gold", "Polyester"].map((mat) => (
+                  <div key={mat} className="flex items-center gap-3">
+                    <Checkbox
+                      id={mat.toLowerCase()}
+                      checked={tempFilters.material.includes(mat)}
+                      onCheckedChange={() => toggleTempFilter("material", mat)}
+                    />
+                    <Label htmlFor={mat.toLowerCase()}>{mat}</Label>
+                  </div>
+                ))}
               </div>
             }
           />
           <FilterCollapsible
             query="Period"
             content={
-              <div className="px-2 flex flex-col gap-5">
+              <div className="px-2 flex flex-col gap-5 font-medium">
                 <Slider
-                  value={periodRange}
-                  defaultValue={[1920]}
-                  onValueChange={setPeriodRange}
+                  value={tempFilters.period}
+                  onValueChange={(value) =>
+                    setTempFilters((prev) => ({
+                      ...prev,
+                      period: value as [number, number],
+                    }))
+                  }
                   min={-4000}
                   max={2020}
                   step={20}
                 />
                 <p className="mt-2 text-sm text-zinc-500">
-                  Selected: {formatPeriod(periodRange[0])} –{" "}
-                  {formatPeriod(periodRange[1])}
+                  Selected: {formatPeriod(tempFilters.period[0])} –{" "}
+                  {formatPeriod(tempFilters.period[1])}
                 </p>
               </div>
             }
           />
         </div>
-        <SheetFooter className="flex flex-row">
-          <Button type="button" variant="default" className="rounded-none">
-            Apply
-          </Button>
+        <SheetFooter className="flex flex-row gap-2">
           <SheetClose asChild>
-            <Button type="button" variant="outline" className="rounded-none">
+            <Button
+              type="button"
+              variant="default"
+              className="rounded-none"
+              onClick={() => setFilters(tempFilters)}
+            >
+              Apply
+            </Button>
+          </SheetClose>
+          <SheetClose asChild>
+            <Button
+              type="button"
+              variant="outline"
+              className="rounded-none"
+              onClick={() => setTempFilters(resetFilters)}
+            >
               Clear
             </Button>
           </SheetClose>

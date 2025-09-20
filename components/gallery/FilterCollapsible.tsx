@@ -4,6 +4,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { type CollapsibleProps } from "@/types/components";
+import { ChevronDown } from "lucide-react";
 
 export default function FilterCollapsible({
   query,
@@ -11,8 +12,10 @@ export default function FilterCollapsible({
 }: CollapsibleProps) {
   return (
     <Collapsible>
-      <CollapsibleTrigger>{query}</CollapsibleTrigger>
-      <CollapsibleContent>{content}</CollapsibleContent>
+      <CollapsibleTrigger className="flex px-3 flex-row justify-between w-[100%]">
+        {query} <ChevronDown />
+      </CollapsibleTrigger>
+      <CollapsibleContent className="mt-3 px-3">{content}</CollapsibleContent>
     </Collapsible>
   );
 }

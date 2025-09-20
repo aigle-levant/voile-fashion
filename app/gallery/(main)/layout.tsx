@@ -1,12 +1,25 @@
+"use client";
+
 import Sort from "@/components/gallery/Sort";
 import FilterGallery from "@/components/gallery/Filter";
 import Navbar from "@/components/common/Navbar";
+// for filter
+import { useState } from "react";
+import { type Filters } from "@/types/components";
 
 export default function GalleryLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // filter
+  const [filters, setFilters] = useState<Filters>({
+    category: [],
+    culture: [],
+    material: [],
+    period: [-4000, 2020],
+  });
+
   return (
     <section
       id="gallery-wrapper"
@@ -24,7 +37,7 @@ export default function GalleryLayout({
           </h1>
           <div id="gallery-actions" className="flex flex-row flex-wrap gap-3">
             <Sort />
-            <FilterGallery />
+            <FilterGallery filters={filters} setFilters={setFilters} />
           </div>
         </div>
 
