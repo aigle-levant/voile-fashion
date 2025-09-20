@@ -23,7 +23,9 @@ export default function GalleryView() {
           console.error(error.message);
           setError(error.message);
         } else {
-          setPosts(items || []);
+          console.log(items);
+
+          setPosts(items);
         }
         // use this for every catch, else ts screams at ye
         // TODO: Make a common error function thingy, then call that instead
