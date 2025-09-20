@@ -1,3 +1,7 @@
+"use client";
+// me: importing usestate happily
+// nextjs: use client, you moron
+
 import {
   Sheet,
   SheetClose,
@@ -13,8 +17,14 @@ import { Button } from "@/components/ui/button";
 import FilterCollapsible from "./FilterCollapsible";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+// period
+import { Slider } from "@/components/ui/slider";
+import { useState } from "react";
+import { formatPeriod } from "@/utils/formatPeriod";
 
 export default function FilterGallery() {
+  // for period filter
+  const [periodRange, setPeriodRange] = useState([-500, 200]);
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -48,6 +58,25 @@ export default function FilterGallery() {
               </div>
             }
           /> */}
+          <FilterCollapsible
+            query="Category"
+            content={
+              <div id="category-filter-wrapper" className="flex flex-col">
+                <div className="flex items-center gap-3">
+                  <Checkbox id="dress" />
+                  <Label htmlFor="dress">Dress</Label>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Checkbox id="footwear" />
+                  <Label htmlFor="footwear">Footwear</Label>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Checkbox id="jewelry" />
+                  <Label htmlFor="jewelry">Jewelry</Label>
+                </div>
+              </div>
+            }
+          />
           <FilterCollapsible
             query="Culture"
             content={
@@ -105,23 +134,19 @@ export default function FilterGallery() {
           <FilterCollapsible
             query="Period"
             content={
-              <div id="material-filter-wrapper" className="flex flex-col">
-                <div className="flex items-center gap-3">
-                  <Checkbox id="silk" />
-                  <Label htmlFor="silk">Silk</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="cotton" />
-                  <Label htmlFor="cotton">Cotton</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="gold" />
-                  <Label htmlFor="gold">Gold</Label>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Checkbox id="polyester" />
-                  <Label htmlFor="polyester">Polyester</Label>
-                </div>
+              <div className="px-2 flex flex-col gap-5">
+                <Slider
+                  value={periodRange}
+                  defaultValue={[1920]}
+                  onValueChange={setPeriodRange}
+                  min={-4000}
+                  max={2020}
+                  step={20}
+                />
+                <p className="mt-2 text-sm text-zinc-500">
+                  Selected: {formatPeriod(periodRange[0])} –{" "}
+                  {formatPeriod(periodRange[1])}
+                </p>
               </div>
             }
           />

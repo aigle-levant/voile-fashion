@@ -2,7 +2,7 @@ import { type GalleryCardProps } from "@/types/components";
 import Image from "next/image";
 
 export default function GalleryCard({
-  url,
+  image_url,
   title,
   category,
   culture,
@@ -18,9 +18,13 @@ export default function GalleryCard({
     >
       <div
         id="gallery-card-img-wrapper"
-        className="w-full h-56 overflow-hidden"
+        className="w-full h-56 overflow-hidden backdrop-grayscale backdrop-filter hover:backdrop-filter-none"
       >
-        <Image src={url} alt={title} className="w-full h-full object-cover" />
+        <Image
+          src={image_url}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
       </div>
       <div id="gallery-card-overlay-wrapper" className="z-100">
         <p className="font-bold text-xl text-left">{title}</p>

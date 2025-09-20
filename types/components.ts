@@ -1,5 +1,5 @@
 export type GalleryCardProps = {
-  url: string;
+  image_url: string;
   title: string;
   category: string | undefined | null;
   culture: string | undefined | null;

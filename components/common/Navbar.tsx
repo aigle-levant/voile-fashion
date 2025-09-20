@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 // search sheet
-import { SheetDemo } from "./SheetDemo";
+import { SearchSheet } from "./SheetDemo";
 // TODO: add theme switcher
 
 export default function Navbar() {
@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="font-body hidden md:flex lg:flex flex-row gap-10 pr-1">
           {/* theme switcher */}
           {/* search */}
-          <SheetDemo />
+          <SearchSheet />
           {/* get started */}
           <button
             type="button"
@@ -86,7 +86,7 @@ export default function Navbar() {
               <Link href="/auth/login">Get started</Link>
             </button>
             {/* search */}
-            <SheetDemo />
+            <SearchSheet />
           </div>
           {/* Theme switcher placeholder */}
         </div>
