@@ -1,4 +1,5 @@
 export type GalleryCardProps = {
+  id?: string | number;
   image_url: string;
   title: string;
   category: string | undefined | null;
@@ -6,6 +7,21 @@ export type GalleryCardProps = {
   period: string | undefined | null;
   material: string | undefined | null;
 };
+
+export type MetGalleryProps = {
+  objectID: number;
+  primaryImageSmall: string;
+  title: string;
+  classification: string | null;
+  culture: string | null;
+  period: string | null;
+  medium: string | null;
+};
+
+export interface ProductProps extends GalleryCardProps {
+  id: string;
+  description: string | null;
+}
 
 export type CollapsibleProps = {
   query: string;

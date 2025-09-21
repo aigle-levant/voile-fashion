@@ -3,30 +3,57 @@
 import { createClient } from "@/lib/supabase/client";
 import { useState, useEffect } from "react";
 import GalleryCard from "./GalleryCard";
-import { type GalleryCardProps } from "@/types/components";
+import {
+  type GalleryCardProps,
+  type MetGalleryProps,
+} from "@/types/components";
 
 export default function GalleryView() {
   // loading state
   const [isLoading, setIsLoading] = useState(true);
   const [posts, setPosts] = useState<GalleryCardProps[]>([]);
   const [error, setError] = useState<string | null>(null);
-  //   create supabase client
-  const supabase = createClient();
+
   // fetch data from supabase table
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data: items, error } = await supabase
+        // fetch from supabase table
+        const supabase = createClient();
+        const { data: items, error: supabaseError } = await supabase
           .from("gallery")
-          .select("image_url, title, category, culture, period, material");
-        if (error) {
-          console.error(error.message);
-          setError(error.message);
-        } else {
-          console.log(items);
-
-          setPosts(items);
+          .select("image_url, title, category, culture, period, material, id");
+        if (supabaseError) {
+          setError(supabaseError.message);
         }
+        // make supabase items array
+        const supabaseGallery: GalleryCardProps[] =
+          items?.map((item: GalleryCardProps, index: number) => ({
+            id: item.id || `supabase-${index}`,
+            image_url: item.image_url,
+            title: item.title,
+            category: item.category,
+            culture: item.culture,
+            period: item.period,
+            material: item.material,
+          })) || [];
+        //  fetch from met museum api
+        const metRes = await fetch("/api/met");
+        const metJson = await metRes.json();
+        const metItemsData: MetGalleryProps[] = metJson.data || [];
+        // make met museum array
+        const metGallery: GalleryCardProps[] = metItemsData.map(
+          (item: MetGalleryProps) => ({
+            id: item.objectID,
+            image_url: item.primaryImageSmall || "",
+            title: item.title || "Untitled",
+            category: item.classification || null,
+            culture: item.culture || null,
+            period: item.period || null,
+            material: item.medium || null,
+          })
+        );
+        setPosts([...supabaseGallery, ...metGallery]);
         // use this for every catch, else ts screams at ye
         // TODO: Make a common error function thingy, then call that instead
       } catch (err: unknown) {
@@ -42,7 +69,7 @@ export default function GalleryView() {
       }
     }
     fetchData();
-  }, [supabase]);
+  }, []);
 
   //   use react suspense for loading
   // remember that nextjs tutorial?
@@ -60,7 +87,7 @@ export default function GalleryView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {posts.map((item) => (
           <GalleryCard
-            key={item.title}
+            key={item.id || item.title}
             image_url={item.image_url}
             title={item.title}
             category={item.category}
