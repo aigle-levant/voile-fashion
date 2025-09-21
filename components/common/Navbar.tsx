@@ -5,6 +5,7 @@ import { useState } from "react";
 // search sheet
 import { SearchSheet } from "./SheetDemo";
 // TODO: add theme switcher
+import { ThemeSwitcher } from "@/components/auth/theme-switcher";
 
 export default function Navbar() {
   // toggle mobile
@@ -34,6 +35,7 @@ export default function Navbar() {
         {/* theme switcher + get started */}
         <div className="font-body hidden md:flex lg:flex flex-row gap-10 pr-1">
           {/* theme switcher */}
+          <ThemeSwitcher />
           {/* search */}
           <SearchSheet />
           {/* get started */}
@@ -89,6 +91,7 @@ export default function Navbar() {
             <SearchSheet />
           </div>
           {/* Theme switcher placeholder */}
+          <ThemeSwitcher />
         </div>
       )}
     </header>

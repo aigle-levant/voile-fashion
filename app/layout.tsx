@@ -93,7 +93,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Voile 2.0",
-  description: "Built with Next.js and Supabase",
+  description: "Fashion Gallery built with Next.js and Supabase",
 };
 
 export default function RootLayout({
@@ -106,7 +106,7 @@ export default function RootLayout({
       <body className={switzer.variable}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
