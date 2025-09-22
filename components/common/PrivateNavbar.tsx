@@ -1,4 +1,4 @@
-import { Settings, SmileIcon, View } from "lucide-react";
+import { Settings, SmileIcon } from "lucide-react";
 
 import {
   Sidebar,
@@ -19,11 +19,6 @@ const items = [
     icon: SmileIcon,
   },
   {
-    title: "Profile details",
-    url: "/profile-details",
-    icon: View,
-  },
-  {
     title: "Settings",
     url: "/settings",
     icon: Settings,
@@ -35,7 +30,7 @@ export function PrivateSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Voile</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

@@ -16,9 +16,17 @@ export default async function ProfilePage() {
   } = await supabase.auth.getUser();
   const { data: profile } = await supabase
     .from("users")
-    .select("username")
+    .select("id, email, username, bio, photo_url, name")
     .eq("id", user?.id)
     .single();
   // either get username or set null
-  return <ProfileCard username={profile?.username || ""} />;
+  return (
+    <ProfileCard
+      email={profile?.email || user?.email || ""}
+      username={profile?.username || ""}
+      bio={profile?.bio || "No bio yet"}
+      photoUrl={profile?.photo_url || ""}
+      name={profile?.name || ""}
+    />
+  );
 }
