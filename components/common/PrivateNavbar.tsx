@@ -27,7 +27,7 @@ const items = [
 
 export function PrivateSidebar() {
   return (
-    <Sidebar>
+    <Sidebar className="text-zinc-50 dark:text-zinc-950 text-left">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Voile</SidebarGroupLabel>

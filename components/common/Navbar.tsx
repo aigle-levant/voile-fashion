@@ -1,16 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // search sheet
 import { SearchSheet } from "./SheetDemo";
+import { createClient } from "@/lib/supabase/client";
 // TODO: add theme switcher
 import { ThemeSwitcher } from "@/components/auth/theme-switcher";
 
 export default function Navbar() {
   // toggle mobile
+  const supabase = createClient();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // check if user is logged in
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setIsLoggedIn(!!user);
+    });
+
+    // optional: keep in sync when auth state changes
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_, session) => {
+        setIsLoggedIn(!!session?.user);
+      }
+    );
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [supabase]);
   return (
     <header className="absolute top-4 left-1/2 z-50 w-[90%] max-w-4xl -translate-x-1/2 rounded-full bg-zinc-950/40 text-zinc-50 px-2 py-3 dark:bg-zinc-50/40 dark:text-zinc-950 backdrop-blur-md">
       <nav className="relative flex items-center justify-between mx-10">
@@ -44,7 +64,14 @@ export default function Navbar() {
             className="rounded-md
             hover:bg-zinc-600 hover:text-zinc-300 md:block bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
           >
-            <Link href="/auth/login">Get started</Link>
+            <Link href={isLoggedIn ? "/profile" : "/auth/login"}>
+              <button
+                type="button"
+                className="rounded-md hover:bg-zinc-600 hover:text-zinc-300 md:block bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
+              >
+                {isLoggedIn ? "Welcome" : "Get started"}
+              </button>
+            </Link>
           </button>
         </div>
         {/* mobile menu */}
@@ -85,7 +112,14 @@ export default function Navbar() {
           </Link>
           <div className="flex flex-row justify-between mx-3 gap-4">
             <button className="rounded-md w-full bg-zinc-50 px-4 py-2 font-sans text-zinc-950 dark:bg-zinc-50 dark:text-zinc-950">
-              <Link href="/auth/login">Get started</Link>
+              <Link href={isLoggedIn ? "/profile" : "/auth/login"}>
+                <button
+                  type="button"
+                  className="rounded-md hover:bg-zinc-600 hover:text-zinc-300 md:block bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
+                >
+                  {isLoggedIn ? "Welcome" : "Get started"}
+                </button>
+              </Link>
             </button>
             {/* search */}
             <SearchSheet />

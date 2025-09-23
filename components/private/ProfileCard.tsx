@@ -137,7 +137,7 @@ export default function ProfileCard({
           </div>
           <button
             onClick={editing ? handleSave : () => setEditing(true)}
-            className="mt-4 px-6 py-2 rounded-md bg-zinc-50 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-100 dark:text-zinc-900 w-22"
+            className="mt-4 px-6 py-2 rounded-md bg-zinc-50 dark:bg-zinc-950 text-zinc-900 hover:bg-zinc-200 dark:text-zinc-50 dark:hover:bg-zinc-600 w-22"
           >
             {editing ? "Save Changes" : "Edit Profile"}
           </button>
