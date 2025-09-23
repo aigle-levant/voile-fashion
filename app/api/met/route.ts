@@ -5,7 +5,7 @@ export async function GET() {
   try {
     // Fetch search results from Met Museum API
     const searchRes = await fetch(
-      "https://collectionapi.metmuseum.org/public/collection/v1/search?dateBegin=1700&dateEnd=1800&q=African",
+      "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=french",
       { headers: { Accept: "application/json" } }
     );
 

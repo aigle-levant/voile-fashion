@@ -2,8 +2,20 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // to prevent nextjs error if using gallery
-    domains: ["jglngbvclcdemvgrryvj.supabase.co", "images.metmuseum.org"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "jglngbvclcdemvgrryvj.supabase.co",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.metmuseum.org",
+        port: "",
+        pathname: "/CRDImages/**",
+      },
+    ],
   },
 };
 

@@ -55,9 +55,11 @@ export default function FilterGallery({
         </Button>
       </SheetTrigger>
       <SheetOverlay className="bg-zinc-950/80 dark:bg-zinc-50/80 backdrop-blur-sm" />
-      <SheetContent>
+      <SheetContent className="bg-zinc-950 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950">
         <SheetHeader>
-          <SheetTitle className="text-center">FILTERS</SheetTitle>
+          <SheetTitle className="text-center text-xl font-normal text-zinc-50 dark:text-zinc-950">
+            FILTERS
+          </SheetTitle>
         </SheetHeader>
         <div className="flex flex-col flex-1 gap-6 px-4">
           {/* TODO: add a way to distinguish gender */}
@@ -164,7 +166,7 @@ export default function FilterGallery({
             }
           />
         </div>
-        <SheetFooter className="flex flex-row gap-2">
+        <SheetFooter className="flex flex-row gap-2 ">
           <SheetClose asChild>
             <Button
               type="button"
@@ -179,7 +181,7 @@ export default function FilterGallery({
             <Button
               type="button"
               variant="outline"
-              className="rounded-none"
+              className="rounded-none text-zinc-950 dark:text-zinc-50"
               onClick={() => setTempFilters(resetFilters)}
             >
               Clear
