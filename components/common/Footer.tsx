@@ -25,12 +25,12 @@ export default function Footer() {
       >
         {/* Title + Socials */}
         <div id="title-socials-container" className="text-center sm:text-left">
-          <div id="title-container" className="flex flex-col mb-4 sm:mb-0">
+          <div id="title-container" className="flex flex-col mb-6 sm:mb-0">
             <p className="font-medium text-3xl sm:text-4xl">Voile</p>
           </div>
           <div
             id="socials-container"
-            className="flex flex-col font-body gap-2 items-center sm:items-start"
+            className="flex flex-col font-body mt-6 gap-2 items-center sm:items-start"
           >
             <Link href="https://www.linkedin.com/in/prajanya-subramanian">
               <p className="hover:font-bold text-footer-text hover:text-text">
@@ -57,7 +57,7 @@ export default function Footer() {
         >
           {/* Get Started */}
           <div id="get-started-links-container" className="flex flex-col">
-            <p className="font-heading font-bold mb-2 text-xl sm:text-2xl">
+            <p className="font-heading font-medium mb-2 text-xl sm:text-2xl">
               Get started
             </p>
             <div
@@ -75,15 +75,19 @@ export default function Footer() {
 
           {/* Features */}
           <div id="features-links-container" className="flex flex-col">
-            <p className="font-heading font-bold mb-2 text-xl sm:text-2xl">
+            <p className="font-heading font-medium mb-2 text-xl sm:text-2xl">
               Features
             </p>
             <div id="features-links" className="font-body flex flex-col gap-1">
               <Link href="/gallery">
                 <p className="hover:font-bold">Gallery</p>
               </Link>
+              {/* TODO: Add gallery product view page */}
               <Link href="/profile">
                 <p className="hover:font-bold">View profile</p>
+              </Link>
+              <Link href="/settings">
+                <p className="hover:font-bold">Settings</p>
               </Link>
             </div>
           </div>
