@@ -65,12 +65,7 @@ export default function Navbar() {
             hover:bg-zinc-600 hover:text-zinc-300 md:block bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
           >
             <Link href={isLoggedIn ? "/profile" : "/auth/login"}>
-              <button
-                type="button"
-                className="rounded-md hover:bg-zinc-600 hover:text-zinc-300 md:block bg-zinc-50 px-4 py-2 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50"
-              >
-                {isLoggedIn ? "Welcome" : "Get started"}
-              </button>
+              {isLoggedIn ? "Welcome" : "Get started"}
             </Link>
           </button>
         </div>

@@ -30,6 +30,7 @@ export default function GalleryView() {
           ? skeletons
           : posts.map((item) => (
               <GalleryCard
+                id={item.id}
                 key={item.id || item.title}
                 image_url={item.image_url}
                 title={item.title}

@@ -6,13 +6,18 @@ import { Plus } from "lucide-react";
 
 export default function ProductDetails({ product }: { product: ProductProps }) {
   return (
-    <div id="products-details-wrapper" className="flex flex-col">
-      <h1 className="font-besley font-medium text-3xl">{product.title}</h1>
-      <ProductTags product={product} />
-      <div id="product-more-details-wrapper">
-        <ProductDetailsSheet product={product} />
+    <div id="products-details-wrapper" className="px-10 md:px-0 lg:px-0">
+      <div className="flex flex-col">
+        <h1 className="font-medium text-3xl py-6">{product.title}</h1>
+        <ProductTags product={product} />
       </div>
-      <div id="products-btn-wrapper">
+      <div
+        id="products-btn-wrapper"
+        className="flex flex-row lg:flex-row gap-5 mt-20"
+      >
+        <div id="product-more-details-wrapper">
+          <ProductDetailsSheet product={product} />
+        </div>
         <Button variant="default" className="flex flex-row gap-5">
           <Plus />
           <p>Add to collection</p>

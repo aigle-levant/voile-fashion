@@ -6,25 +6,25 @@ export default function ProductTags({ product }: { product: ProductProps }) {
   const tags = (field: string | null | undefined) =>
     field?.split(",").map((t) => t.trim()) || [];
   return (
-    <div id="product-tags-wrapper">
+    <div id="product-tags-wrapper" className="flex flex-col gap-6">
       <div id="period" className="flex flex-row gap-5">
-        <p className="text-left font-light">BELONGS TO ERA: </p>
+        <p className="text-left">BELONGS TO ERA: </p>
         {tags(product.period).map((tag) => (
           <Badge key={tag} variant="secondary">
             {tag}
           </Badge>
         ))}
       </div>
-      <div id="culture">
-        <p className="text-left font-light">CULTURE</p>
+      <div id="culture" className="flex flex-row gap-5">
+        <p className="text-left">CULTURE: </p>
         {tags(product.culture).map((tag) => (
           <Badge key={tag} variant="secondary">
             {tag}
           </Badge>
         ))}
       </div>
-      <div id="materials">
-        <p className="text-left font-light">MATERIALS</p>
+      <div id="materials" className="flex flex-row gap-5">
+        <p className="text-left">MATERIALS: </p>
         {tags(product.material).map((tag) => (
           <Badge key={tag} variant="secondary">
             {tag}
