@@ -1,4 +1,5 @@
 export async function GET() {
+  console.log("Function invoked!");
   const res = await fetch(
     "https://jglngbvclcdemvgrryvj.supabase.co/functions/v1/handle-met-api",
     {
@@ -16,5 +17,6 @@ export async function GET() {
   }
 
   const data = await res.json();
+  console.log(data);
   return Response.json({ status: "ok", data });
 }
