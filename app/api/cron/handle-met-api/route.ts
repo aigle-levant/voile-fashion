@@ -1,27 +1,20 @@
-import { createClient } from "@supabase/supabase-js";
-
 export async function GET() {
-  // no one can spam access like an idiot
-  // NO ONE! [in future]
-  //   const authHeader = req.headers.get("authorization");
-  //   if (authHeader !== `Bearer ${process.env.API_SECRET!}`) {
-  //     return new Response("Unauthorized", { status: 401 });
-  //   }
-  const supabase = createClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  const res = await fetch(
+    "https://jglngbvclcdemvgrryvj.supabase.co/functions/v1/handle-met-api",
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY!}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ hasImages: true }),
+    }
   );
 
-  //   what it does is to invoke my edge function at supabase
-  // this funct parses data from met api, cleans it up a bit
-  // then stuffs em in gallery db
-  const { data, error } = await supabase.functions.invoke("handle-met-api", {
-    body: JSON.stringify({ hasImages: true }),
-  });
-
-  if (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+  if (!res.ok) {
+    return Response.json({ error: await res.text() }, { status: res.status });
   }
 
+  const data = await res.json();
   return Response.json({ status: "ok", data });
 }
