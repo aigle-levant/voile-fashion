@@ -8,6 +8,17 @@ export type GalleryCardProps = {
   material: string | undefined | null;
 };
 
+export type ProductProps = {
+  id: string;
+  title: string;
+  image_url: string;
+  category?: string | null;
+  culture?: string | null;
+  period?: string | null;
+  material?: string | null;
+  description?: string | null;
+};
+
 export type MetGalleryProps = {
   objectID: number;
   primaryImageSmall: string;
@@ -16,12 +27,19 @@ export type MetGalleryProps = {
   culture: string | null;
   period: string | null;
   medium: string | null;
+  creditLine: string | null;
 };
 
-export interface ProductProps extends GalleryCardProps {
-  id: string;
+export type GalleryRow = {
+  met_object_id: number;
+  title: string;
+  image_url: string;
+  category: string | null;
+  culture: string | null;
+  period: string | null;
+  material: string | null;
   description: string | null;
-}
+};
 
 export type CollapsibleProps = {
   query: string;

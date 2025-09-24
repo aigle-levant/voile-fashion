@@ -11,10 +11,6 @@ export default function GalleryView() {
   const skeletons = Array.from({ length: 6 }).map((_, idx) => (
     <div key={idx} className="flex flex-col space-y-3">
       <Skeleton className="h-[400px] w-full rounded-none" />
-      {/* <div className="space-y-2">
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-3/4" />
-      </div> */}
     </div>
   ));
 
@@ -30,8 +26,8 @@ export default function GalleryView() {
           ? skeletons
           : posts.map((item) => (
               <GalleryCard
+                key={item.id}
                 id={item.id}
-                key={item.id || item.title}
                 image_url={item.image_url}
                 title={item.title}
                 category={item.category}

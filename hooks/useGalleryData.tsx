@@ -2,10 +2,7 @@
 
 import { createClient } from "@/lib/supabase/client";
 import { useState, useEffect } from "react";
-import {
-  type GalleryCardProps,
-  type MetGalleryProps,
-} from "@/types/components";
+import { type GalleryCardProps } from "@/types/components";
 
 export function useGalleryData() {
   const [posts, setPosts] = useState<GalleryCardProps[]>([]);
@@ -16,39 +13,24 @@ export function useGalleryData() {
     async function fetchData() {
       try {
         const supabase = createClient();
-        const { data: items, error: supabaseError } = await supabase
+        const { data: items, error: dbError } = await supabase
           .from("gallery")
-          .select("image_url, title, category, culture, period, material, id");
-        if (supabaseError) setError(supabaseError.message);
+          .select("*")
+          .order("id", { ascending: true });
 
-        const supabaseGallery: GalleryCardProps[] =
-          items?.map((item: GalleryCardProps, index: number) => ({
-            id: item.id || `supabase-${index}`,
-            image_url: item.image_url,
-            title: item.title,
-            category: item.category,
-            culture: item.culture,
-            period: item.period,
-            material: item.material,
-          })) || [];
+        if (dbError) throw new Error(dbError.message);
 
-        const metRes = await fetch("/api/met");
-        const metJson = await metRes.json();
-        const metItemsData: MetGalleryProps[] = metJson.data || [];
+        const gallery: GalleryCardProps[] = items.map((item) => ({
+          id: item.id,
+          image_url: item.image_url,
+          title: item.title,
+          category: item.category,
+          culture: item.culture,
+          period: item.period,
+          material: item.material,
+        }));
 
-        const metGallery: GalleryCardProps[] = metItemsData.map(
-          (item: MetGalleryProps) => ({
-            id: item.objectID,
-            image_url: item.primaryImageSmall || "",
-            title: item.title || "Untitled",
-            category: item.classification || null,
-            culture: item.culture || null,
-            period: item.period || null,
-            material: item.medium || null,
-          })
-        );
-
-        setPosts([...supabaseGallery, ...metGallery]);
+        setPosts(gallery);
       } catch (err: unknown) {
         if (err instanceof Error) setError(err.message);
         else setError("An unknown error occurred");
