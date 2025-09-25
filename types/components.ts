@@ -41,6 +41,21 @@ export type GalleryRow = {
   description: string | null;
 };
 
+export type Collection = {
+  id: string;
+  created_at: string;
+  gallery: {
+    met_object_id: string;
+    title: string;
+    image_url: string;
+    category: string;
+    culture: string;
+    period: string;
+    material: string;
+    description: string;
+  };
+};
+
 export type CollapsibleProps = {
   query: string;
   content: React.ReactNode;

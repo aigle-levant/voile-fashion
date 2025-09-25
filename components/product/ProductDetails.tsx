@@ -3,6 +3,7 @@ import ProductDetailsSheet from "./ProductDetailsSheet";
 import { type ProductProps } from "@/types/components";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
+import { addToCollection } from "@/lib/actions/collections";
 
 export default function ProductDetails({ product }: { product: ProductProps }) {
   return (
@@ -18,10 +19,13 @@ export default function ProductDetails({ product }: { product: ProductProps }) {
         <div id="product-more-details-wrapper">
           <ProductDetailsSheet product={product} />
         </div>
-        <Button variant="default" className="flex flex-row gap-5">
-          <Plus />
-          <p>Add to collection</p>
-        </Button>
+        <form action={addToCollection}>
+          <input type="hidden" name="itemId" value={product.id} />
+          <Button variant="default" className="flex flex-row gap-5">
+            <Plus />
+            <p>Add to collection</p>
+          </Button>
+        </form>
       </div>
     </div>
   );
