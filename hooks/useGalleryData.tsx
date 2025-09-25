@@ -2,9 +2,12 @@
 
 import { createClient } from "@/lib/supabase/client";
 import { useState, useEffect } from "react";
-import { type GalleryCardProps } from "@/types/components";
+import { type GalleryCardProps, type Filters } from "@/types/components";
 
-export function useGalleryData() {
+export function useGalleryData(
+  filters: Filters,
+  sort: "ascending" | "descending"
+) {
   const [posts, setPosts] = useState<GalleryCardProps[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,14 +16,25 @@ export function useGalleryData() {
     async function fetchData() {
       try {
         const supabase = createClient();
-        const { data: items, error: dbError } = await supabase
-          .from("gallery")
-          .select("*")
-          .order("id", { ascending: true });
+        let query = supabase.from("gallery").select("*");
 
+        if (filters.material.length)
+          query = query.in("material", filters.material);
+        if (filters.culture.length)
+          query = query.in("culture", filters.culture);
+        if (filters.category.length)
+          query = query.in("category", filters.category);
+
+        query = query
+          .gte("period", filters.period[0])
+          .lte("period", filters.period[1]);
+
+        query = query.order("title", { ascending: sort === "ascending" });
+
+        const { data, error: dbError } = await query;
         if (dbError) throw new Error(dbError.message);
 
-        const gallery: GalleryCardProps[] = items.map((item) => ({
+        const gallery: GalleryCardProps[] = (data ?? []).map((item) => ({
           id: item.id,
           image_url: item.image_url,
           title: item.title,
@@ -39,7 +53,7 @@ export function useGalleryData() {
       }
     }
     fetchData();
-  }, []);
+  }, [filters, sort]);
 
   return { posts, error, isLoading };
 }

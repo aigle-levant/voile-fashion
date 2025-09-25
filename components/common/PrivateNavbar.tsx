@@ -1,4 +1,4 @@
-import { Settings, SmileIcon } from "lucide-react";
+import { Settings, SmileIcon, BookCopyIcon } from "lucide-react";
 
 import {
   Sidebar,
@@ -22,6 +22,11 @@ const items = [
     title: "Settings",
     url: "/settings",
     icon: Settings,
+  },
+  {
+    title: "Collection",
+    url: "/collection",
+    icon: BookCopyIcon,
   },
 ];
 

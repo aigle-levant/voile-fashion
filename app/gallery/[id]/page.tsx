@@ -46,11 +46,11 @@ export default async function ProductPage({
         {/* product details */}
         <ProductDetails product={item} />
       </div>
-      <div id="related-products-wrapper" className="flex flex-col">
-        <h2 className="text-2xl">We think you might like...</h2>
-        {/* related products */}
-        {/* <RelatedProducts /> */}
-      </div>
+      {/* <div id="related-products-wrapper" className="flex flex-col">
+        <h2 className="text-2xl">We think you might like...</h2> */}
+      {/* related products */}
+      {/* <RelatedProducts /> */}
+      {/* </div> */}
     </div>
   );
 }

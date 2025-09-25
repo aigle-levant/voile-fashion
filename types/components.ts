@@ -69,7 +69,7 @@ export type Filters = {
   period: [number, number];
 };
 
-export type FilterGalleryProps = {
+export interface FilterGalleryProps {
   filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-};
+  setFilters: (filters: Filters) => void;
+}

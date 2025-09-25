@@ -3,9 +3,15 @@
 import { useGalleryData } from "@/hooks/useGalleryData";
 import GalleryCard from "./GalleryCard";
 import { Skeleton } from "@/components/ui/skeleton";
+import { type Filters } from "@/types/components";
 
-export default function GalleryView() {
-  const { posts, error, isLoading } = useGalleryData();
+interface GalleryViewProps {
+  filters: Filters;
+  sort: "ascending" | "descending";
+}
+
+export default function GalleryView({ filters, sort }: GalleryViewProps) {
+  const { posts, error, isLoading } = useGalleryData(filters, sort);
 
   // setup skeleton
   const skeletons = Array.from({ length: 6 }).map((_, idx) => (

@@ -1,3 +1,4 @@
+"use client";
 import {
   Select,
   SelectContent,
@@ -6,9 +7,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function Sort() {
+interface SortProps {
+  sort: "ascending" | "descending";
+  setSort: (value: "ascending" | "descending") => void;
+}
+
+export default function Sort({ sort, setSort }: SortProps) {
   return (
-    <Select>
+    <Select
+      value={sort}
+      onValueChange={(v) => setSort(v as "ascending" | "descending")}
+    >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
