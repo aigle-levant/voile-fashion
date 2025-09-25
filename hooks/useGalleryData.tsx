@@ -25,9 +25,11 @@ export function useGalleryData(
         if (filters.category.length)
           query = query.in("category", filters.category);
 
-        query = query
-          .gte("period", filters.period[0])
-          .lte("period", filters.period[1]);
+        if (filters.period[0] !== -4000 || filters.period[1] !== 2020) {
+          query = query
+            .gte("period", filters.period[0])
+            .lte("period", filters.period[1]);
+        }
 
         query = query.order("title", { ascending: sort === "ascending" });
 
