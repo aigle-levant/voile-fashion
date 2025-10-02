@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import CollectionGrid from "@/components/private/collections/CollectionGrid";
 import { type Collection } from "@/types/components";
+import CollectionHeader from "@/components/private/collections/CollectionHeader";
 
 interface RawCollectionItem {
   id: string;
@@ -85,7 +86,7 @@ export default async function CollectionsPage() {
   console.log("Collection inserted successfully");
   return (
     <div className="px-6 md:px-12 lg:px-20 py-10">
-      <h1 className="text-3xl font-semibold mb-8">My Collection</h1>
+      <CollectionHeader />
       <CollectionGrid collections={collections} />
     </div>
   );
